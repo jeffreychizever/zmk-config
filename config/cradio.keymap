@@ -13,6 +13,23 @@
 #define NAV 2
 #define PREFS 3
 
+
+#define U_MOUSE_MOVE_MAX 1400
+#define U_MOUSE_SCROLL_MAX 100
+#define  MOUSU  MOVE_Y(-U_MOUSE_MOVE_MAX)
+#define  MOUSL  MOVE_X(-U_MOUSE_MOVE_MAX)
+#define  MOUSD  MOVE_Y(U_MOUSE_MOVE_MAX)
+#define  MOUSR  MOVE_X(U_MOUSE_MOVE_MAX)
+#define  SCRLUP SCROLL_Y(U_MOUSE_SCROLL_MAX)
+#define  SCRLDN SCROLL_Y(-U_MOUSE_SCROLL_MAX)
+
+&mmv {
+	time-to-max-speed-ms=<400>;
+};
+&msc {
+	time-to-max-speed-ms=<400>;
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -58,11 +75,11 @@
         //│  Escape  │  Tab     │ Settings │  Page Up │  Page Dn │   │  Vol -   │ Bright - │ Bright - │ Vol +    │ N/A      │
             &kp ESC    &kp TAB    &to PREFS &kp PG_UP  &kp PG_DN     &kp C_VOL_DN &kp C_BRI_DN &kp C_BRI_UP &kp C_VOL_UP  
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  N/A     │  N/A     │  N/A     │  N/A     │  N/A     │   │  N/A     │  N/A     │  N/A     │  N/A     │  N/A     │
-            &none      &none      &none      &none      &none          &none      &none      &none     &none       &kp UP
+        //│  N/A     │  N/A     │  N/A     │  N/A     │mwhl up   │   │mouse left│mouse down│mouse up  │mouse rght│ up       │
+            &none      &none      &none      &none     &msc SCRLUP    &mmv MOUSL &mmv MOUSD &mmv MOUSU &mmv MOUSR &kp UP
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│  N/A     │   │  N/A     │  N/A     │  ,/<     │  ./>     │  //?     │
-            &kp LCTRL  &kp LALT   &kp LGUI   &kp LSFT   &none          &none      &none      &kp LEFT   &kp RIGHT  &kp DOWN
+        //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│mwhl dn   │   │  N/A     │  N/A     │ left     │ right    │ down     │
+            &kp LCTRL  &kp LALT   &kp LGUI   &kp LSFT  &msc SCRLDN     &none      &none      &kp LEFT   &kp RIGHT  &kp DOWN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //				   │ rclick   │ click    │   │ Home     │ Home     │
 					     &mkp MB2   &mkp MB1     &to DEFAULT &to DEFAULT
