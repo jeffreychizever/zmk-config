@@ -15,8 +15,8 @@
 #define PREFS 3
 
 
-#define U_MOUSE_MOVE_MAX 1400
-#define U_MOUSE_SCROLL_MAX 100
+#define U_MOUSE_MOVE_MAX 2500
+#define U_MOUSE_SCROLL_MAX 50
 #define  MOUSU  MOVE_Y(-U_MOUSE_MOVE_MAX)
 #define  MOUSL  MOVE_X(-U_MOUSE_MOVE_MAX)
 #define  MOUSD  MOVE_Y(U_MOUSE_MOVE_MAX)
@@ -61,8 +61,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  1/!     │  2/@     │  3/#     │  4/$     │  5/%     │   │  6/^     │  7/&     │  8/*     │  9/(     │  0/)     │
             &kp N1     &kp N2     &kp N3     &kp N4      &kp N5        &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│  ENTER   │   │  ;/:     │  '/"     │  ,/<     │  ./>     │  //?     │
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤ //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│  ENTER   │   │  ;/:     │  '/"     │  ,/<     │  ./>     │  //?     │
             &sk LCTRL  &sk LALT   &sk LGUI   &sk LSFT   &kp ENTER      &kp SEMI   &kp SQT    &kp COMMA  &kp DOT    &kp SLASH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //				   │ Amethyst │ TMUX	 │   │ (held)	│ To nav   │
@@ -75,7 +74,7 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  Escape  │  Tab     │ Settings │  Page Up │  Page Dn │   │  Vol -   │ Bright - │ Bright - │ Vol +    │ N/A      │
-            &kp ESC    &kp TAB    &to PREFS &kp PG_UP  &kp PG_DN     &kp C_VOL_DN &kp C_BRI_DN &kp C_BRI_UP &kp C_VOL_UP  
+            &kp ESC    &kp TAB    &to PREFS &kp PG_UP  &kp PG_DN     &kp C_VOL_DN &kp C_BRI_DN &kp C_BRI_UP &kp C_VOL_UP &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  N/A     │  N/A     │  N/A     │  N/A     │mwhl up   │   │mouse left│mouse down│mouse up  │mouse rght│ up       │
             &none      &none      &none      &none    &msc SCRLUP    &mmv MOUSL &mmv MOUSD &mmv MOUSU &mmv MOUSR &kp UP
