@@ -5,8 +5,12 @@
 #include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/outputs.h>
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 3000  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 25    // default: 10
+
+#include <dt-bindings/zmk/pointing.h>
  
 
 #define DEFAULT 0
@@ -15,21 +19,19 @@
 #define PREFS 3
 
 
-#define U_MOUSE_MOVE_MAX 2500
-#define U_MOUSE_SCROLL_MAX 5
-#define  MOUSU  MOVE_Y(-U_MOUSE_MOVE_MAX)
-#define  MOUSL  MOVE_X(-U_MOUSE_MOVE_MAX)
-#define  MOUSD  MOVE_Y(U_MOUSE_MOVE_MAX)
-#define  MOUSR  MOVE_X(U_MOUSE_MOVE_MAX)
-#define  SCRLUP MOVE_Y(U_MOUSE_SCROLL_MAX)
-#define  SCRLDN MOVE_Y(-U_MOUSE_SCROLL_MAX)
+#define  MOUSU  MOVE_Y(-ZMK_POINTING_DEFAULT_MOVE_VAL)
+#define  MOUSL  MOVE_X(-ZMK_POINTING_DEFAULT_MOVE_VAL)
+#define  MOUSD  MOVE_Y(ZMK_POINTING_DEFAULT_MOVE_VAL)
+#define  MOUSR  MOVE_X(ZMK_POINTING_DEFAULT_MOVE_VAL)
+#define  SCRLUP MOVE_Y(ZMK_POINTING_DEFAULT_SCRL_VAL)
+#define  SCRLDN MOVE_Y(-ZMK_POINTING_DEFAULT_SCRL_VAL)
 
 &mmv {
-	time-to-max-speed-ms=<400>;
+	time-to-max-speed-ms=<500>;
 };
 
 &msc {
-	time-to-max-speed-ms=<400>;
+	time-to-max-speed-ms=<500>;
 };
 
 / {
@@ -80,8 +82,8 @@
         //│  N/A     │  N/A     │  N/A     │  N/A     │mwhl up   │   │mouse left│mouse down│mouse up  │mouse rght│ up       │
             &none      &none      &none      &none    &msc SCRLUP    &mmv MOUSL &mmv MOUSD &mmv MOUSU &mmv MOUSR &kp UP
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│mwhl dn   │   │  N/A     │  N/A     │ left     │ right    │ down     │
-            &kp LCTRL  &kp LALT   &kp LGUI   &kp LSFT  &msc SCRLDN     &none      &none      &kp LEFT   &kp RIGHT  &kp DOWN
+        //│ OSM CTRL │ OSM ALT  │ OSM CMD  │ OSM SHIFT│mwhl dn   │   │Play/Pause│  N/A     │ left     │ right    │ down     │
+            &kp LCTRL  &kp LALT   &kp LGUI   &kp LSFT  &msc SCRLDN   &kp C_PP 	&none 	   &kp LEFT   &kp RIGHT  &kp DOWN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //				   │ rclick   │ click    │   │ Home     │ Home     │
 					     &mkp MB2   &mkp MB1     &to DEFAULT &to DEFAULT
